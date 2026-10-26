@@ -1,0 +1,189 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+:root {
+    /* Colour: from karate mats and gloves */
+    --belt-black: #000000;
+    --mat-navy: #0A2A66;
+    --mat-aqua: #1FC4DE;
+    --glove-red: #D72638;
+    --gi-white: #FFFFFF;
+    --gray-900: #1C1C1E;
+    --gray-600: #6E6E73;
+    --gray-300: #C7C7CC;
+    --gray-500: #8E8E93;
+    --gray-100: #F2F2F4;
+
+    /* Type */
+    --font-display: 'Archivo', sans-serif;
+    --font-body: 'Instrument Sans', sans-serif;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+    --text-h3: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+    --text-h2: clamp(1.75rem, 1.4rem + 1.8vw, 3rem);
+    --text-h1: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+    --text-display: clamp(3.5rem, 2rem + 8vw, 9rem);
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 40px;
+    --space-6: 64px;
+    --space-7: 96px;
+
+    /* Shape */
+    --radius-sm: 8px;
+    --radius-lg: 24px;
+    --radius-sheet: 32px;
+    --radius-pill: 999px;
+
+    /* Layout */
+    --max-w: 1200px;
+    --page-pad: clamp(18px, 5vw, 48px);
+    --header-h: 56px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+    /* Layers */
+    --z-sheet: 1;
+    --z-header: 50;
+    --z-menu: 40;
+    --z-modal: 100;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+}
+
+body {
+    min-height: 100svh;
+    overflow-x: clip;
+    background: var(--belt-black);
+    color: var(--gi-white);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+
+.container {
+    width: min(100% - 2 * var(--page-pad), var(--max-w));
+    margin-inline: auto;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+:focus-visible {
+    outline: 2px solid var(--mat-aqua);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+html {
+    scrollbar-gutter: stable;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 52px;
+    padding: 0 var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s var(--ease-out), border-color 0.3s, background-color 0.3s;
+}
+
+.btn--red {
+    background: var(--glove-red);
+    color: var(--gi-white);
+}
+
+.btn--red:hover {
+    transform: translateY(-2px);
+}
+
+.btn--ghost {
+    background: transparent;
+    border-color: var(--gray-600);
+    color: var(--gi-white);
+}
+
+.btn--ghost:hover {
+    border-color: var(--gi-white);
+}
+@media (hover: none) and (pointer: coarse) {
+  html, body, .menu, .menu-body {
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  .menu::-webkit-scrollbar,
+  .menu-body::-webkit-scrollbar {
+    display: none;
+  }
+}

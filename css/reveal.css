@@ -1,0 +1,92 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.belt {
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin-bottom: var(--space-3);
+    background: var(--glove-red);
+}
+
+/* ---------- The belt line ---------- */
+.js [data-reveal="line"] {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s var(--ease-in-out) calc(var(--i, 0) * 90ms);
+}
+
+.js [data-reveal="line"].is-in {
+    transform: none;
+}
+
+/* ---------- The masked rise (word by word) ---------- */
+.js [data-reveal="words"] .w {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+
+.js [data-reveal="words"] .w > span {
+    display: inline-block;
+    transform: translateY(115%);
+    transition: transform 1s var(--ease-out) calc(var(--i, 0) * 90ms + var(--wi, 0) * 55ms);
+}
+
+.js [data-reveal="words"].is-in .w > span {
+    transform: none;
+}
+
+/* ---------- Soft rise ---------- */
+.js [data-reveal="up"] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+        opacity 0.9s var(--ease-out) calc(var(--i, 0) * 90ms),
+        transform 1.1s var(--ease-out) calc(var(--i, 0) * 90ms);
+}
+
+.js [data-reveal="up"].is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- The strike (diagonal wipe) ---------- */
+.js [data-reveal="slash"] {
+    clip-path: polygon(0 0, 0 0, -30% 100%, -30% 100%);
+    transition: clip-path 1.2s var(--ease-in-out) calc(var(--i, 0) * 120ms);
+}
+
+.js [data-reveal="slash"].is-in {
+    clip-path: polygon(0 0, 135% 0, 105% 100%, -30% 100%);
+}
+
+.js [data-reveal="slash"] > :where(img, picture, .media) {
+    transform: scale(1.18);
+    transition: transform 1.8s var(--ease-out) calc(var(--i, 0) * 120ms);
+}
+
+.js [data-reveal="slash"].is-in > :where(img, picture, .media) {
+    transform: none;
+}
+
+/* ---------- Reduced motion: show everything at once ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .js [data-reveal],
+    .js [data-reveal] .w > span,
+    .js [data-reveal] > :where(img, picture, .media) {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        transition: none !important;
+    }
+}

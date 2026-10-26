@@ -1,0 +1,218 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.about-grid {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.about-text p {
+    max-width: 58ch;
+    color: var(--gray-900);
+    font-size: var(--text-lg);
+}
+
+.about-text p + p {
+    margin-top: var(--space-3);
+}
+
+@media (min-width: 960px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: var(--space-6);
+    }
+
+    .about-story h2 {
+        font-size: clamp(3rem, 2rem + 3vw, 5rem);
+    }
+}
+
+/* ---------- 3x3 numbers ---------- */
+.facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: var(--space-6);
+    list-style: none;
+}
+
+.fact {
+    padding: clamp(14px, 3vw, 28px);
+    border-radius: 20px;
+    background: var(--gray-100);
+}
+
+.fact b {
+    display: block;
+    color: var(--mat-navy);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1rem + 3.2vw, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.fact span {
+    display: block;
+    margin-top: 8px;
+    color: var(--gray-600);
+    font-size: clamp(0.72rem, 0.65rem + 0.3vw, 0.9375rem);
+    line-height: 1.3;
+}
+
+/* ---------- Mission and values ---------- */
+.about-duo {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+}
+
+.duo {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--gray-300);
+}
+
+.duo h3 {
+    font-size: var(--text-h3);
+}
+
+.duo p {
+    max-width: 52ch;
+    margin-top: var(--space-2);
+    color: var(--gray-900);
+}
+
+@media (min-width: 960px) {
+    .about-duo {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+    }
+}
+
+/* ---------- Leadership ---------- */
+.leaders-head p {
+    max-width: 48ch;
+    margin-top: var(--space-2);
+    color: var(--gray-600);
+}
+
+.leader-list {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    list-style: none;
+}
+
+.leader {
+    display: grid;
+    gap: var(--space-3);
+    padding: 10px;
+    border-radius: var(--radius-sheet);
+    background: var(--gray-900);
+    color: var(--gi-white);
+    overflow: hidden;
+}
+
+.leader-photo {
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leader-photo .media {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background: var(--mat-navy);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 18vw, 7rem);
+    font-weight: 800;
+}
+
+.leader-body {
+    padding: 6px 14px 20px;
+}
+
+.leader-role {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--glove-red);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.leader h3 {
+    margin-top: 14px;
+    font-size: var(--text-h2);
+}
+
+.leader-bio {
+    margin-top: 10px;
+    color: var(--gray-300);
+}
+
+.leader-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.leader-facts dt {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.8125rem;
+}
+
+.leader-facts dd {
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+@media (min-width: 640px) {
+    .leader-facts {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .leader {
+        grid-template-columns: minmax(300px, 420px) 1fr;
+        gap: var(--space-6);
+        padding: 14px;
+    }
+
+    .leader:nth-child(even) {
+        grid-template-columns: 1fr minmax(300px, 420px);
+    }
+
+    .leader:nth-child(even) .leader-photo {
+        order: 2;
+    }
+
+    .leader-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: var(--space-4);
+    }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /rankings.html
+Disallow: /idcard.html
+
+Sitemap: https://dhka-live.netlify.app/sitemap.xml

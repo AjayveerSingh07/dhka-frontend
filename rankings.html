@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <script>
+        document.documentElement.classList.add('js');
+        setTimeout(function () {
+            if (!window.__revealOk) document.documentElement.classList.remove('js');
+        }, 3000);
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>My ranking | DHKA</title>
+    <meta name="description" content="Your DHKA ranking, points and belt.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+
+       <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/rankings.css">
+    <script src="js/config.js" defer></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/session.js" defer></script>
+    <script src="js/account.js" defer></script>
+    <script src="js/reveal.js" defer></script>
+    <script src="js/rankings.js" defer></script>
+</head>
+<body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="hd-inner">
+            <div class="pill" id="pill">
+                <a class="brand" href="index.html" aria-label="DHKA home">
+                    
+                    <span class="brand-mark" aria-hidden="true"><img src="images/logo.png" alt="logo img"></span>
+                    <span class="brand-name">DHKA</span>
+                </a>
+                <nav class="nav-inline" aria-label="Primary">
+                    <a href="index.html">Home</a>
+                    <a href="rankings.html" aria-current="page">Rankings</a>
+                    <a href="about.html">About Us</a>
+                    <a href="events.html">Events</a>
+                    <a href="index.html#insights">Insights</a>
+                </nav>
+            </div>
+            <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="menu" id="menu" inert>
+        <div class="menu-wipe menu-wipe--red"></div>
+        <div class="menu-wipe menu-wipe--black"></div>
+        <svg class="menu-ring" viewBox="0 0 260 260" aria-hidden="true">
+            <circle cx="130" cy="130" r="100" transform="rotate(-90 130 130)"></circle>
+        </svg>
+        <div class="menu-body container">
+            <nav aria-label="Menu">
+                <ul class="menu-links">
+                    <li style="--i:0"><span class="menu-line"></span><a href="index.html"><span class="menu-text"><span class="menu-dot"></span>Home</span></a></li>
+                    <li style="--i:1"><span class="menu-line"></span><a href="rankings.html" aria-current="page"><span class="menu-text"><span class="menu-dot"></span>Rankings</span></a></li>
+                    <li style="--i:2"><span class="menu-line"></span><a href="about.html"><span class="menu-text">About Us</span></a></li>
+                    <li style="--i:3"><span class="menu-line"></span><a href="events.html"><span class="menu-text">Events</span></a></li>
+                    <li style="--i:4"><span class="menu-line"></span><a href="index.html#insights"><span class="menu-text">Insights</span></a></li>
+                </ul>
+            </nav>
+            <div class="menu-aside">
+                <div class="menu-contact">
+                    
+                    <p>Hoshiarpur, Punjab 146001</p>
+                    <p>+91 99883 89098</p>
+                    <p>sucha7479@gmail.com</p>
+                </div>
+                <div class="menu-actions">
+                    <a class="btn btn--ghost" href="login.html">Login</a>
+                    <a class="btn btn--red" href="register.html">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+               <main id="main">
+        <section class="auth-hero" aria-labelledby="rank-title">
+            <div class="container auth-grid">
+                <div class="auth-intro">
+                    <span class="belt" data-reveal="line"></span>
+                    <h1 id="rank-title" data-reveal="words">Your ranking.</h1>
+                    <p data-reveal="up" style="--i:2">Your position, points and belt, kept up to date by the association.</p>
+                </div>
+
+                <div class="auth-card rank-card" id="rankCard" aria-live="polite" aria-busy="true" data-reveal="up" style="--i:2">
+                    <div class="rk-loading" id="rkLoading">
+                        <div class="rk-skel rk-skel--a"></div>
+                        <div class="rk-skel rk-skel--b"></div>
+                        <div class="rk-skel rk-skel--c"></div>
+                    </div>
+
+                    <div class="rk-error" id="rkError" hidden>
+                        <h2>We could not load your ranking</h2>
+                        <p>Please check your connection and try again.</p>
+                        <button class="btn btn--red" id="rkRetry" type="button">Try again</button>
+                    </div>
+
+                    <div class="rk-content" id="rkContent" hidden>
+                        <div class="rk-top">
+                            <span class="rk-avatar" id="rkAvatar" aria-hidden="true"></span>
+                            <div class="rk-who">
+                                <span class="rk-name" id="rkName"></span>
+                                <span class="rk-id" id="rkId"></span>
+                            </div>
+                        </div>
+
+                        <div class="rk-position" id="rkRanked">
+                            <span class="rk-hash" aria-hidden="true">#</span>
+                            <span class="rk-num" id="rkPos">0</span>
+                            <span class="rk-of" id="rkOf"></span>
+                        </div>
+                        <p class="rk-unranked" id="rkUnranked" hidden>Not ranked</p>
+
+                        <dl class="rk-stats">
+                            <div><dt>Points</dt><dd id="rkPoints">0</dd></div>
+                            <div><dt>Belt</dt><dd><span class="rk-dot" id="rkDot"></span><span id="rkBelt"></span></dd></div>
+                            <div><dt>Age</dt><dd id="rkAge"></dd></div>
+                        </dl>
+                        <p class="rk-note" id="rkNote" hidden></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    
+
+            <footer class="site-footer">
+        <div class="container">
+            <div class="ft-top" data-reveal="up">
+                <a class="brand ft-brand-row" href="index.html" aria-label="DHKA home">
+                    <span class="brand-mark" aria-hidden="true"><img src="images/logo.png" alt="logo img"></span>
+                    <span class="brand-name">DHKA</span>
+                </a>
+                <p class="ft-tagline">Discipline. Strength. Honor.</p>
+            </div>
+
+            <div class="ft-cols" data-stagger>
+                <nav aria-label="Footer" data-reveal="up">
+                    <h2 class="ft-title">Explore</h2>
+                    <ul class="ft-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="rankings.html">Rankings</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="index.html#insights">Insights</a></li>
+                    </ul>
+                </nav>
+                <div data-reveal="up">
+                    <h2 class="ft-title">Members</h2>
+                    <ul class="ft-list">
+                        <li><span>President: Sanjeev Kumar</span></li>
+                        <li><span>Gen. Secretary & Cheif Coach: Sucha Singh</span></li>
+                    </ul>
+                </div>
+                <div data-reveal="up">
+                    <h2 class="ft-title">Associates</h2>
+                    <ul class="ft-list">
+                        <li><span>Punjab Olympic Association</span></li>
+                        <li><span>Amateur Karate Foundation Punjab</span></li>
+                    </ul>
+                </div>
+                <div data-reveal="up">
+                    <h2 class="ft-title">Contact</h2>
+                    
+                    <ul class="ft-list">
+                        <li><span>Hoshiarpur, Punjab 146001</span></li>
+                        <li><a href="tel:+919988389098">+91 99883 89098</a></li>
+                        <li><a href="mailto:sucha7479@gmail.com">sucha7479@gmail.com</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ft-bottom" data-reveal="up">
+                <p>&copy; 2026 DHKA. Distt. Hoshiarpur Karate Do Association.</p>
+                <a href="#top">Back to top &uarr;</a>
+            </div>
+        </div>
+        <div data-reveal="up">
+            <div class="ft-wordmark" aria-hidden="true">DHKA</div>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

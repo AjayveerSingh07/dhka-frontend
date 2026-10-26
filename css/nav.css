@@ -1,0 +1,410 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.skip-link {
+    position: fixed;
+    left: 12px;
+    top: -60px;
+    z-index: var(--z-modal);
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--gi-white);
+    color: var(--belt-black);
+    font-weight: 600;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 12px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    position: fixed;
+    top: max(12px, env(safe-area-inset-top));
+    left: 0;
+    right: 0;
+    z-index: var(--z-header);
+    pointer-events: none;
+}
+
+.hd-inner {
+    position: relative;
+    width: min(100% - 24px, var(--max-w));
+    height: var(--header-h);
+    margin-inline: auto;
+}
+
+.pill {
+    pointer-events: auto;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 0 64px 0 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    transition: transform 0.5s var(--ease-in-out), background-color 0.4s, border-color 0.4s;
+}
+
+.pill.is-solid {
+    background: var(--belt-black);
+    border-color: var(--gray-900);
+}
+
+.pill.is-hidden {
+    transform: translateY(calc(-100% - 24px));
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid var(--mat-aqua);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+}
+
+.nav-inline {
+    display: none;
+    gap: 4px;
+}
+
+.nav-inline a {
+    position: relative;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s, background-color 0.25s;
+}
+
+.nav-inline a:hover {
+    color: var(--gi-white);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-inline a[aria-current="page"] {
+    color: var(--gi-white);
+}
+
+.nav-inline a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background: var(--glove-red);
+}
+
+@media (min-width: 960px) {
+    .nav-inline {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* ---------- Burger (stays visible when the pill hides) ---------- */
+.burger {
+    pointer-events: auto;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    padding: 0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.burger.is-solo {
+    background: var(--belt-black);
+    border-color: var(--gray-600);
+}
+
+.burger span {
+    position: absolute;
+    left: 9px;
+    top: 20px;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gi-white);
+    transition: transform 0.6s var(--ease-in-out);
+}
+
+.burger span:first-child {
+    transform: translateY(-5px) rotate(0deg);
+}
+
+.burger span:last-child {
+    background: var(--glove-red);
+    transform: translate(5px, 5px) rotate(0deg) scaleX(0.58);
+}
+
+.burger[aria-expanded="true"] span:first-child {
+    transform: translateY(0) rotate(45deg);
+}
+
+.burger[aria-expanded="true"] span:last-child {
+    transform: translate(0, 0) rotate(-45deg) scaleX(1);
+}
+
+/* ---------- Menu ---------- */
+html.menu-open {
+    overflow: hidden;
+}
+
+.menu {
+    --ox: 90%;
+    --oy: 40px;
+    --r: 150vmax;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-menu);
+    pointer-events: none;
+}
+
+.menu.is-open {
+    pointer-events: auto;
+}
+
+.menu-wipe {
+    position: absolute;
+    inset: 0;
+    clip-path: circle(0px at var(--ox) var(--oy));
+    transition: clip-path 0.9s var(--ease-in-out);
+}
+
+.menu-wipe--red {
+    background: var(--glove-red);
+    transition-delay: 0.12s;
+}
+
+.menu-wipe--black {
+    background: var(--belt-black);
+    transition-delay: 0s;
+}
+
+.menu.is-open .menu-wipe {
+    clip-path: circle(var(--r) at var(--ox) var(--oy));
+}
+
+.menu.is-open .menu-wipe--red {
+    transition-delay: 0s;
+}
+
+.menu.is-open .menu-wipe--black {
+    transition-delay: 0.12s;
+}
+
+.menu-ring {
+    position: absolute;
+    right: -90px;
+    bottom: -90px;
+    z-index: 1;
+    width: min(70vw, 360px);
+    aspect-ratio: 1;
+    pointer-events: none;
+    
+}
+
+.menu-ring circle {
+    fill: none;
+    stroke: var(--mat-aqua);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 628;
+    opacity: 0.55;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.menu.is-open .menu-ring circle {
+    stroke-dashoffset: 170;
+    transition: stroke-dashoffset 1.8s cubic-bezier(0.45, 0, 0.2, 1) 0.5s;
+}
+
+.menu-body {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding-top: calc(var(--header-h) + 48px);
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+}
+
+.menu-links {
+    list-style: none;
+}
+
+.menu-links li {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.14);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.menu-links a {
+    display: flex;
+    align-items: center;
+    height: clamp(60px, 9vh, 92px);
+    color: var(--gi-white);
+    text-decoration: none;
+}
+
+.menu-links a:focus-visible {
+    outline-offset: -4px;
+}
+
+.menu-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 1.2rem + 3.4vw, 4.25rem);
+    letter-spacing: -0.02em;
+    transform: translateY(110%);
+    transition: transform 0.3s ease, color 0.25s;
+}
+
+.menu-links a:hover .menu-text {
+    color: var(--mat-aqua);
+}
+
+.menu-dot {
+    display: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--glove-red);
+}
+
+.menu-links a[aria-current="page"] .menu-dot {
+    display: inline-block;
+}
+
+.menu.is-open .menu-line {
+    transform: scaleX(1);
+    transition: transform 0.9s var(--ease-out) calc(0.4s + var(--i) * 0.07s);
+}
+
+.menu.is-open .menu-text {
+    transform: translateY(0);
+    transition: transform 0.9s var(--ease-out) calc(0.45s + var(--i) * 0.07s), color 0.25s;
+}
+
+.menu-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu.is-open .menu-aside {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease 0.95s, transform 0.7s var(--ease-out) 0.95s;
+}
+
+.menu-contact p {
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+}
+
+.menu-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.menu-actions .btn {
+    flex: 1;
+}
+
+@media (min-width: 960px) {
+    .menu-body {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        align-items: center;
+        gap: var(--space-6);
+    }
+
+    .menu-aside {
+        align-self: end;
+        padding-bottom: var(--space-5);
+    }
+
+    .menu-actions .btn {
+        flex: 0 1 auto;
+        min-width: 140px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu *, .menu-wipe {
+        transition-delay: 0s !important;
+    }
+}
+
+/* faaaaaaah */
+.menu[inert] .menu-ring { visibility: hidden; }

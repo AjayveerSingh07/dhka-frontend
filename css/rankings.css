@@ -1,0 +1,173 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.rank-card {
+    min-height: 380px;
+}
+
+.rk-skel {
+    background: var(--gray-100);
+    border-radius: 14px;
+    animation: rk-pulse 1.3s ease-in-out infinite;
+}
+
+.rk-skel--a { height: 52px; width: 60%; }
+.rk-skel--b { height: 110px; margin-top: var(--space-5); }
+.rk-skel--c { height: 84px; margin-top: var(--space-4); }
+
+@keyframes rk-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.rk-error {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+}
+
+.rk-error p {
+    color: var(--gray-600);
+}
+
+.rk-error .btn {
+    width: auto;
+    margin-top: 0;
+}
+
+.rk-content[hidden],
+.rk-error[hidden],
+.rk-loading[hidden],
+.rk-position[hidden],
+.rk-unranked[hidden],
+.rk-note[hidden] {
+    display: none;
+}
+
+.rk-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.rk-avatar {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--mat-navy);
+    color: var(--gi-white);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.rk-who {
+    min-width: 0;
+}
+
+.rk-name {
+    display: block;
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rk-id {
+    display: block;
+    color: var(--gray-600);
+    font-size: var(--text-sm);
+}
+
+.rk-position {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin: var(--space-5) 0 var(--space-4);
+}
+
+.rk-hash {
+    color: var(--glove-red);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+}
+
+.rk-num {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 22vw, 8rem);
+    font-stretch: 125%;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+}
+
+.rk-of {
+    color: var(--gray-600);
+    font-size: var(--text-sm);
+}
+
+.rk-unranked {
+    margin: var(--space-5) 0 var(--space-4);
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+}
+
+.rk-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.rk-stats > div {
+    padding: 14px;
+    border-radius: 20px;
+    background: var(--gray-100);
+}
+
+.rk-stats dt {
+    color: var(--gray-600);
+    font-size: 0.8125rem;
+}
+
+.rk-stats dd {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.rk-dot {
+    flex: 0 0 auto;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    background: var(--gray-300);
+}
+
+.rk-note {
+    margin-top: var(--space-4);
+    color: var(--gray-600);
+    font-size: var(--text-sm);
+}

@@ -1,0 +1,84 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Or disable it only for specific elements */
+button, a, .clickable-element {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+html.lb-open {
+    overflow: hidden;
+}
+
+.lb {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+    border: 0;
+    background: rgba(0, 0, 0, 0.94);
+    color: var(--gi-white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.lb:not([open]) {
+    display: none;
+}
+
+.lb[open] {
+    display: flex;
+    animation: lb-in 0.35s var(--ease-out);
+}
+
+.lb::backdrop {
+    background: var(--belt-black);
+}
+
+.lb-img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100svh - 128px);
+    border-radius: 16px;
+    object-fit: contain;
+    cursor: zoom-out;
+}
+
+.lb-cap {
+    max-width: 60ch;
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+.lb-close {
+    position: absolute;
+    top: max(14px, env(safe-area-inset-top));
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--gi-white);
+}
+
+.lb-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes lb-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
